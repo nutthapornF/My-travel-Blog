@@ -4,7 +4,7 @@ this is my website that **I'm still developing** as my basic project.
 i wanted to write more about trips and placing that i've been over the past year, so i can appreciate the time i had and I can share to other people hoping this can make others trip planing a little eaier !.
 
 - add more trips
-- add mobile respondsive
+- add mobile respondsive using tailwind
 
 **V.2 developping plan**:
 
