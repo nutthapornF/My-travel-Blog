@@ -17,9 +17,7 @@ const NavBar = () => {
         </nav>
         <a href="#contact" className="cta">
           {" "}
-          <ContactBtn href="#blog" className="duration-500">
-            Blog
-          </ContactBtn>
+          <ContactBtn className="duration-500">Blog</ContactBtn>
         </a>
       </Navbar>
     </header>
@@ -74,7 +72,7 @@ const Navlink = styled.a`
   text-decoration: none;
 `;
 
-const ContactBtn = styled.a`
+const ContactBtn = styled.button`
   padding: 9px 35px;
   text-decoration: none;
   background-color: #cc6600;

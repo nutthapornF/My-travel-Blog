@@ -4,6 +4,7 @@ import NavBar from "./components/Navigate";
 import LandingPage from "./components/LandingPage";
 import Footer from "./components/footer";
 import Destination from "./Pages/Destination";
+import CreateDestination from "./Pages/CreateDestination";
 import NotFoundPage from "./Pages/NotFoundPage";
 
 /* ---------------------- */
@@ -19,6 +20,7 @@ function App() {
           path="/destination/review-destination/:id"
           element={<Destination />}
         />
+        <Route path="/destination/create" element={<CreateDestination />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />

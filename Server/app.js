@@ -20,25 +20,76 @@ async function init() {
   app.get("/", (req, res) => {
     res.send("Hello DTs Ohlooo");
   });
+  // get all destination -----------------
   app.get("/destination", async (req, res) => {
-    const db = client.db("travelsite").collection("destination");
-    const result = await db.find({}).toArray();
-    console.log(result);
-    return res.json({
-      data: result,
-    });
+    try {
+      const db = client.db("travelsite").collection("destination");
+      const result = await db.find({}).toArray();
+      console.log(result);
+      return res.json({
+        data: result,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   });
 
   /* -------get one destination ------- */
   app.get("/destination/:id", async (req, res) => {
-    const postId = ObjectId(req.params.id);
-    //console.log(postId);
-    const db = client.db("travelsite").collection("destination");
-    const result = await db.findOne({ _id: postId });
-    console.log(result.content);
-    return res.json({
-      data: result,
-    });
+    try {
+      const postId = ObjectId(req.params.id);
+      const db = client.db("travelsite").collection("destination");
+      const result = await db.findOne({ _id: postId });
+      return res.json({
+        data: result,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  });
+  // create new destination ---> see to it if we have to add json body manually
+  app.post("/destination/create", async (req, res) => {
+    try {
+      const db = client.db("travelsite").collection("destination");
+      const newDestination = {
+        ...req.body,
+      };
+      await db.insertOne(newDestination);
+      res.status(200).json(`New destination has been created `);
+      console.log(newDestination);
+    } catch (error) {
+      console.log(error);
+    }
+  });
+  // update destination ----
+  app.put("/destination/update/:id", async (req, res) => {
+    try {
+      const updateDestination = {
+        ...req.body,
+      };
+      const postId = ObjectId(req.params.id);
+      const db = client.db("travelsite").collection("destination");
+      await db.updateOne(
+        { _id: postId },
+        {
+          $set: updateDestination,
+        }
+      );
+      return res.json({ message: `destination id ${postId} has been updated` });
+    } catch (error) {
+      console.log(error);
+    }
+  });
+  //delete destination ---------------------
+  app.delete("/destination/delete/:id", async (req, res) => {
+    try {
+      const postId = ObjectId(req.params.id);
+      const db = client.db("travelsite").collection("destination");
+      await db.deleteOne({ _id: postId });
+      return res.json({ message: `destination id ${postId} has been deleted` });
+    } catch (error) {
+      console.log(error);
+    }
   });
 
   app.get("*", (req, res) => {
