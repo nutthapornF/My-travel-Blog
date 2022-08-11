@@ -1,25 +1,36 @@
 import express from "express";
 import { Router } from "express";
 import { ObjectId } from "mongodb";
-
+import multer from "multer";
 import bodyParser from "body-parser";
-
-/* dataBase */
 import { client } from "./db.js";
 
 // เรียกใช้ Function `connect` จาก `client`
 // อย่าลืม `await` เนื่องจาก `connect`เป็น async
 async function init() {
   const app = express();
-  const port = 3000;
+  const port = 4000;
   const dataRouter = Router();
   await client.connect();
-
   app.use(bodyParser.json());
+  // connect server with front // before this having some bug tha theyre not connecting to each others
+  //sometimes axios is blocked by cors so we need to by pass it with this code then add proxy init package.json
+  app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept"
+    );
+    next();
+  });
+
+  const multerUpload = multer({ dest: "uploads/" });
+  const imagesUpload = multerUpload.fields([{ name: "images", maxCount: 2 }]);
 
   app.get("/", (req, res) => {
     res.send("Hello DTs Ohlooo");
   });
+
   // get all destination -----------------
   app.get("/destination", async (req, res) => {
     try {
@@ -48,7 +59,7 @@ async function init() {
     }
   });
   // create new destination ---> see to it if we have to add json body manually
-  app.post("/destination/create", async (req, res) => {
+  app.post("/destination/create", imagesUpload, async (req, res) => {
     try {
       const db = client.db("travelsite").collection("destination");
       const newDestination = {

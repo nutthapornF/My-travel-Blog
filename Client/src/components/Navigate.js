@@ -67,7 +67,7 @@ const Navlinks = styled.div`
 const Navlink = styled.a`
   font-family: "Montserrat", san-sarif;
   font-weight: 500;
-  font-size: 17px;
+  font-size: 14px;
   color: #edf0f1;
   text-decoration: none;
 `;

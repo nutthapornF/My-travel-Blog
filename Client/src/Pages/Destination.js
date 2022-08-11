@@ -27,69 +27,69 @@ function Destination() {
       <HeaderText>{destinationData?.topic}</HeaderText>{" "}
       <ContentWrapper>
         <div>
-          <Img src={destinationData?.pictures[0]} width="600px" />
-          <Img src={destinationData?.pictures[1]} width="600px" />
+          <Img src={destinationData?.pictures[0]} />
+          <Img src={destinationData?.pictures[1]} />
           <P>{destinationData?.note1}</P>
           <P>{destinationData?.note2}</P>
         </div>
         <div>
-          <Img src={destinationData?.img1[0]} width="600px" />
-          <Img src={destinationData?.img1[1]} width="600px" />
+          <Img src={destinationData?.img1[0]} />
+          <Img src={destinationData?.img1[1]} />
           <P>{destinationData?.note3}</P>
           <P>{destinationData?.note4} </P>
         </div>
         <div>
-          <Img src={destinationData?.img2[0]} width="600px" />
-          <Img src={destinationData?.img2[1]} width="600px" />
-          <Img src={destinationData?.img3[0]} width="600px" />
-          <Img src={destinationData?.img3[1]} width="600px" />
+          <Img src={destinationData?.img2[0]} />
+          <Img src={destinationData?.img2[1]} />
+          <Img src={destinationData?.img3[0]} />
+          <Img src={destinationData?.img3[1]} />
           <P>{destinationData?.note5}</P>
         </div>
         <div>
-          <Img src={destinationData?.img4[0]} width="600px" />
-          <Img src={destinationData?.img4[1]} width="600px" />
+          <Img src={destinationData?.img4[0]} />
+          <Img src={destinationData?.img4[1]} />
           <P>{destinationData?.note6} </P>
         </div>
 
         <div>
-          <Img src={destinationData?.img5[0]} width="600px" />
-          <Img src={destinationData?.img5[1]} width="600px" />
+          <Img src={destinationData?.img5[0]} />
+          <Img src={destinationData?.img5[1]} />
           <P>{destinationData?.note7}</P>
           <P>{destinationData?.note8} </P>
         </div>
         <div>
-          <Img src={destinationData?.img6[0]} width="600px" />
-          <Img src={destinationData?.img6[1]} width="600px" />
+          <Img src={destinationData?.img6[0]} />
+          <Img src={destinationData?.img6[1]} />
           <P>{destinationData?.note9}</P>
           <P>{destinationData?.note10} </P>
         </div>
         <div>
-          <Img src={destinationData?.img7[0]} width="600px" />
+          <Img src={destinationData?.img7[0]} />
           <P>{destinationData?.note11}</P>
           <P>{destinationData?.note12} </P>
-          <Img src={destinationData?.img8[0]} width="600px" />
-          <Img src={destinationData?.img8[1]} width="600px" />
+          <Img src={destinationData?.img8[0]} />
+          <Img src={destinationData?.img8[1]} />
           <P>{destinationData?.note13} </P>
           <P>{destinationData?.note14} </P>
         </div>
         {/* ------------------ the second one ---------- */}
         <div>
-          <Img src={destinationData?.img9[0]} width="600px" />
-          <Img src={destinationData?.img9[1]} width="600px" />
+          <Img src={destinationData?.img9[0]} />
+          <Img src={destinationData?.img9[1]} />
           <P>{destinationData?.note15}</P>
           <P>{destinationData?.note16} </P>
         </div>
         <div>
-          <Img src={destinationData?.img10[0]} width="600px" />
-          <Img src={destinationData?.img10[1]} width="600px" />
+          <Img src={destinationData?.img10[0]} />
+          <Img src={destinationData?.img10[1]} />
           <P>{destinationData?.note17}</P>
-          <Img src={destinationData?.img11[0]} width="600px" />
+          <Img src={destinationData?.img11[0]} />
           <P>{destinationData?.note18} </P>
         </div>
 
         <div>
-          <Img src={destinationData?.img12[0]} width="600px" />
-          <Img src={destinationData?.img12[1]} width="600px" />
+          <Img src={destinationData?.img12[0]} />
+          <Img src={destinationData?.img12[1]} />
           <P>{destinationData?.note19} </P>
         </div>
       </ContentWrapper>
@@ -110,7 +110,7 @@ const Wrapper = styled.div`
 const HeaderText = styled.h1`
   padding-top: 100px;
   text-align: center;
-  font-size: 80px;
+  font-size: 65px;
   padding-bottom: 30px;
 `;
 const ContentWrapper = styled.div`
@@ -125,10 +125,11 @@ const Content = styled.div`
 const P = styled.p`
   text-align: center;
   padding: 25px;
-  font-size: 22px;
+  font-size: 18px;
 `;
 
 const Img = styled.img`
   padding: 15px;
   display: inline-flex;
+  width: 450px;
 `;

@@ -34,7 +34,7 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: space-around;
 
-  height: 150px;
+  height: 80px;
   background-color: black;
   color: #cc6600;
 `;
@@ -44,17 +44,20 @@ const Img = styled.img`
 `;
 const P = styled.p`
   padding-top: 16px;
+  font-size: 15px;
 `;
 
 const H1 = styled.h1`
   color: white;
-  padding-right: 30px;
+  padding-right: 25px;
+  font-size: 25px;
 `;
 const Logowrap = styled.div`
   border-right: solid white 4px;
 `;
 
 const LogoTextwrap = styled.div`
+  font-size: 15px;
   color: white;
   padding-left: 20px;
   padding-top: 10px;
