@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-
-import { useState } from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
 import "../App.css";
 import Data from "../Data/BlogsData";
 
@@ -8,43 +8,66 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const Blogs = () => {
   const [readMore, setReadMore] = useState(false);
+  const [destinationData, setDestinationData] = useState([]);
   const navigate = useNavigate();
+
+  //------- get Destination
+  const url = "http://localhost:4000/destination";
+  const getDestination = async () => {
+    try {
+      const results = await axios.get(url);
+      //ต้อง  reverse data เพื่อให้แสดงใบสมัครล่าสุดจากใหม่ -> เก่า
+      setDestinationData(results.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+    return {
+      destinationData,
+    };
+  };
+
+  useEffect(() => {
+    getDestination();
+  }, []);
 
   // const navigate = useNavigate();
   // const handleSeeMoreCLick = () => {
   //   navigate("/Destination");
   // };
 
+  console.log(destinationData);
   return (
     <ZoneWrap id="#Blog">
       <H1> Destonations </H1>
 
       <BlogsWrap>
-        {Data?.map((destination) => {
+        {destinationData?.map((destination) => {
           return (
-            <Blog key={destination.id}>
+            <Blog key={destination._id}>
               <img
-                src={destination.pictures[0]}
+                src={destination.images[0].url}
                 alt={destination.topic}
-                width="250px;"
+                width="200px;"
               />
-              <h1>{destination.topic}</h1>
+              <H2>{destination.topic}</H2>
               <h6>{destination.credit}</h6>
               <h6>{destination.tags}</h6>
               <P>
                 {readMore
-                  ? destination.note1
-                  : `${destination.note1.substring(0, 150)}...`}
+                  ? destination.content1
+                  : `${destination.content1.substring(0, 150)}...`}
               </P>
               <Button
                 onClick={() =>
-                  navigate(`/destination/review-destination/${destination.id}`)
+                  navigate(`/destination/review-destination/${destination._id}`)
                 }>
                 Read More
               </Button>
             </Blog>
           );
         })}
+        <br />
+        {/* <Posmockup /> */}
       </BlogsWrap>
     </ZoneWrap>
   );
@@ -64,8 +87,8 @@ const BlogsWrap = styled.div`
   align-items: : center;
 `;
 const Blog = styled.div`
-  width: 300px;
-  height: 600px;
+  width: 250px;
+  height: 500px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -78,9 +101,14 @@ const H1 = styled.h1`
   padding: 30px;
   margin-bottom: 30px;
   font-family: "Montserrat", san-sarif;
+  font-size: 30px;
+`;
+const H2 = styled.h1`
+  font-size: 25px;
 `;
 const P = styled.p`
-  padding: 20px;
+  padding: 13px;
+  font-size: 13px;
 `;
 const Button = styled.button`
   padding: 10px 15px;

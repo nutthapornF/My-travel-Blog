@@ -32,7 +32,7 @@ const Navbar = styled.div`
   justify-content: space-between;
   align-items: baseline;
   width: 100%;
-  height: 64px;
+  height: 58px;
   padding: 10px 5%;
   background-color: black;
   font-family: "Montserrat", san-sarif;
@@ -46,7 +46,7 @@ const Navlogo = styled.a`
   cursor: pointer;
   border: 1px;
   padding: 10px;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 800;
   transition: all 0.3s ease 0s;
   &:hover {
@@ -67,13 +67,13 @@ const Navlinks = styled.div`
 const Navlink = styled.a`
   font-family: "Montserrat", san-sarif;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 12px;
   color: #edf0f1;
   text-decoration: none;
 `;
 
 const ContactBtn = styled.button`
-  padding: 9px 35px;
+  padding: 9px 25px;
   text-decoration: none;
   background-color: #cc6600;
   border: none;
@@ -82,6 +82,6 @@ const ContactBtn = styled.button`
   transition: all 0.3s ease 0s;
   font-family: "Montserrat", san-sarif;
   font-weight: 500;
-  font-size: 17px;
+  font-size: 14px;
   color: #edf0f1;
 `;

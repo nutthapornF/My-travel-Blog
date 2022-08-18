@@ -1,9 +1,13 @@
 import express from "express";
+import mongoose from "mongoose";
 import { Router } from "express";
 import { ObjectId } from "mongodb";
 import multer from "multer";
 import bodyParser from "body-parser";
-import { client } from "./db.js";
+import { client } from "./utils/db.js";
+import dotenv from "dotenv";
+import cloudinary from "cloudinary";
+import { cloudinaryUpload } from "./utils/upload.js";
 
 // เรียกใช้ Function `connect` จาก `client`
 // อย่าลืม `await` เนื่องจาก `connect`เป็น async
@@ -13,6 +17,15 @@ async function init() {
   const dataRouter = Router();
   await client.connect();
   app.use(bodyParser.json());
+
+  dotenv.config();
+  cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET,
+    secure: true,
+  });
+
   // connect server with front // before this having some bug tha theyre not connecting to each others
   //sometimes axios is blocked by cors so we need to by pass it with this code then add proxy init package.json
   app.use((req, res, next) => {
@@ -25,12 +38,9 @@ async function init() {
   });
 
   const multerUpload = multer({ dest: "uploads/" });
-  const imagesUpload = multerUpload.fields([{ name: "images", maxCount: 2 }]);
+  const imagesUpload = multerUpload.fields([{ name: "images", maxCount: 28 }]);
 
-  app.get("/", (req, res) => {
-    res.send("Hello DTs Ohlooo");
-  });
-
+  /* ------------Router zone --------------- */
   // get all destination -----------------
   app.get("/destination", async (req, res) => {
     try {
@@ -45,10 +55,11 @@ async function init() {
     }
   });
 
-  /* -------get one destination ------- */
+  /* get one destination ------- */
   app.get("/destination/:id", async (req, res) => {
     try {
-      const postId = ObjectId(req.params.id);
+      //const postId = ObjectId(req.params.id);
+      const postId = mongoose.Types.ObjectId(req.params.id.trim());
       const db = client.db("travelsite").collection("destination");
       const result = await db.findOne({ _id: postId });
       return res.json({
@@ -65,9 +76,11 @@ async function init() {
       const newDestination = {
         ...req.body,
       };
+      const imagesUrl = await cloudinaryUpload(req.files);
+      newDestination["images"] = imagesUrl;
       await db.insertOne(newDestination);
       res.status(200).json(`New destination has been created `);
-      console.log(newDestination);
+      console.log(newDestination, "destination has been created");
     } catch (error) {
       console.log(error);
     }

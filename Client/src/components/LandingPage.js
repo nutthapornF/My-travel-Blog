@@ -67,7 +67,7 @@ export default LandingPage;
 
 const H1 = styled.h1`
   text-align: center;
-  font-size: 50px;
+  font-size: 30px;
 `;
 
 const BannerBg = styled.img`
@@ -80,16 +80,16 @@ const BannerBg = styled.img`
   z-index: -1;
 `;
 const BannerTextWrapper = styled.div`
-  width: 600px;
+  width: 520px;
   position: absolute;
-  top: 300px;
-  right: 210px;
+  top: 250px;
+  right: 80px;
   border-top: solid white 1px;
   border-bottom: solid white 1px;
   z-index: 0;
 `;
 const BannerText = styled.h1`
-  font-size: 80px;
+  font-size: 70px;
   font-family: "Baskervville", serif;
   color: white;
   letter-spacing: 4px;
@@ -109,7 +109,7 @@ const TextPart = styled.div`
   color: white;
 `;
 const P = styled.p`
-  font-size: 25px;
+  font-size: 16px;
   margin-top: 20px;
 `;
 
