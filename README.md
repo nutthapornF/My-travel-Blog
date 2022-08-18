@@ -2,7 +2,8 @@
 
 this is my website that **I'm still developing** as my basic project.
 i wanted to write more about trips and placing that i've been over the past year, so i can appreciate the time i had and I can share to other people hoping this can make others trip planing a little eaier !.
-#Stack i use 
+#Stack i use
+
 <p>
   <img alt="React" src="https://img.shields.io/badge/-ReactJS-51CBF2?style=flat&logo=react&logoColor=white" />
   <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=white&style=flat" />
@@ -23,7 +24,8 @@ i wanted to write more about trips and placing that i've been over the past year
 - Respondsive to any device mobiles, tablets, laptops, and desktops!
 - add nav drop down for visited countries
 
-
 ## Preview Images
 
 ![Preview Image](./Client/public/images/Screen%20Shot%202022-07-31%20at%2011.23.13%20PM.png)
+![Preview Image](./Client/public/images/preview2.png)
+![Preview Image](./Client/public/images/preview3.png)
