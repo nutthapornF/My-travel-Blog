@@ -25,4 +25,4 @@ i wanted to write more about trips and placing that i've been over the past year
 </p>
 ## Preview Images
 
-![Preview Image](./public/images/Screen%20Shot%202022-07-31%20at%2011.23.13%20PM.png)
+![Preview Image](./client/public/images/Screen%20Shot%202022-07-31%20at%2011.23.13%20PM.png)
