@@ -77,14 +77,15 @@ export default Blogs;
 
 const ZoneWrap = styled.div`
   width: 100%;
-  height: 800px;
+  height: auto;
   background-color: #f5f5f5;
 `;
 const BlogsWrap = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: : center;
+  align-items: center;
+  flex-wrap: wrap;
 `;
 const Blog = styled.div`
   width: 250px;
@@ -93,7 +94,7 @@ const Blog = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin: 0px 30px;
+  margin: 20px 30px;
 `;
 const H1 = styled.h1`
   display: flex;
