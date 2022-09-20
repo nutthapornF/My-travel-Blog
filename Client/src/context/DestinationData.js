@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-const DestinationDataContect = React.createContext();
+export const DestinationDataContect = React.createContext();
 
 function DestinationDataProvider(props) {
   //previw in landing page
-  const [titileImg, setTitileImg] = [];
+  const [titleImg, setTitleImg] = [];
   const [id, setId] = "";
   const [topic, SetTopic] = "";
   const [credit, SetCredit] = "";
@@ -36,8 +36,8 @@ function DestinationDataProvider(props) {
     <DestinationDataContect.Provider
       value={{
         //small preview
-        titileImg,
-        setTitileImg,
+        titleImg,
+        setTitleImg,
         id,
         setId,
         topic,
