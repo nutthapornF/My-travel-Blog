@@ -1,26 +1,25 @@
-import styled from "@emotion/styled";
 function SearchBar() {
   return (
     <div>
-      <div class="flex justify-center">
-        <div class="mb-3 xl:w-96">
-          <div class="input-group relative flex  items-stretch w-full mb-4 rounded">
+      <div className="flex justify-center">
+        <div className="mb-3 xl:w-96">
+          <div className="input-group relative flex  items-stretch w-full mb-4 rounded">
             <input
               type="search"
-              class="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none zindex"
+              className="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none zindex"
               placeholder="Search"
               aria-label="Search"
               aria-describedby="button-addon2"
             />
             <span
-              class="input-group-text flex items-center px-3 py-1.5 text-base font-normal text-gray-700 text-center whitespace-nowrap rounded"
+              className="input-group-text flex items-center px-3 py-1.5 text-base font-normal text-gray-700 text-center whitespace-nowrap rounded"
               id="basic-addon2">
               <svg
                 aria-hidden="true"
                 focusable="false"
                 data-prefix="fas"
                 data-icon="search"
-                class="w-4"
+                className="w-4"
                 role="img"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 512 512">
