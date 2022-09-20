@@ -38,7 +38,9 @@ const Blogs = () => {
   console.log(destinationData);
   return (
     <ZoneWrap id="#Blog">
-      <H1> Destonations </H1>
+      <H6>
+        <a href="/seeAlldestinations">See all Destinations </a>
+      </H6>
 
       <BlogsWrap>
         {destinationData?.map((destination) => {
@@ -79,11 +81,12 @@ const ZoneWrap = styled.div`
   width: 100%;
   height: auto;
   background-color: #f5f5f5;
+  padding: 0px 40px;
 `;
 const BlogsWrap = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
 `;
@@ -96,13 +99,13 @@ const Blog = styled.div`
   align-items: center;
   margin: 20px 30px;
 `;
-const H1 = styled.h1`
+const H6 = styled.h1`
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   padding: 30px;
-  margin-bottom: 30px;
   font-family: "Montserrat", san-sarif;
-  font-size: 30px;
+  font-size: 15px;
+  text-decoration-line: underline;
 `;
 const H2 = styled.h1`
   font-size: 25px;
