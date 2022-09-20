@@ -6,10 +6,32 @@ import GitHub from "../img/gitHub.png";
 import Navigate from "./Navigate";
 import myPic from "../img/Me.jpg";
 import Blogs from "./BlogsPost";
+import { useContext, useState, useEffect } from "react";
+import axios from "axios";
 
 const LandingPage = () => {
+  const [destinationGet, setDestinationGet] = useState([]);
+  /*   const [searchTerm, setSearchTerm] = useState(""); */
+  //have to fix to limit ampunt GET
+  const url = "http://localhost:4000/destination";
+  const getDestination = async () => {
+    try {
+      const results = await axios.get(url);
+      //ต้อง  reverse data เพื่อให้แสดงใบสมัครล่าสุดจากใหม่ -> เก่า
+      setDestinationGet(results.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+    return {
+      destinationGet,
+    };
+  };
+
+  useEffect(() => {
+    getDestination();
+  }, []);
   return (
-    <div>
+    <Wrapper>
       <Navigate />
 
       <div className="banner-area" id="home">
@@ -58,13 +80,42 @@ const LandingPage = () => {
           <img src={myPic} width="240" alt="myPicture" className="myPic" />
         </div> */}
       </ZoneWrap>
-      <Blogs />
-    </div>
+
+      <BlogWrap>
+        {destinationGet?.map((places) => {
+          return (
+            <Blogs
+              key={places._id}
+              id={places._id}
+              titleImg={places.images[0].url}
+              topic={places.topic}
+              credit={places.credit}
+              tags={places.tags}
+              content1={places.content1}
+            />
+          );
+        })}
+      </BlogWrap>
+      <H6>
+        <a href="/seeAlldestinations">See all Destinations . . . </a>
+      </H6>
+    </Wrapper>
   );
 };
 
 export default LandingPage;
 
+const BlogWrap = styled.div`
+  display: inline-flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 20px;
+  background-color: #f5f5f5;
+`;
+const Wrapper = styled.div`
+  padding-bottom: 0px;
+  width: 100%;
+`;
 const H1 = styled.h1`
   text-align: center;
   font-size: 30px;
@@ -130,4 +181,12 @@ const SCLogo = styled.a`
 `;
 const Img = styled.img`
   border-radius: 50%;
+`;
+
+const H6 = styled.h1`
+  text-align: center;
+  padding: 20px;
+  font-family: "Montserrat", san-sarif;
+  font-size: 15px;
+  background-color: #f5f5f5;
 `;

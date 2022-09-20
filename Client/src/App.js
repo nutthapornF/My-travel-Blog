@@ -6,6 +6,7 @@ import Footer from "./components/footer";
 import Destination from "./Pages/Destination";
 import CreateDestination from "./Pages/CreateDestination";
 import NotFoundPage from "./Pages/NotFoundPage";
+import SeeAllDestinations from "./Pages/SeeAllDestinations";
 
 /* ---------------------- */
 import "./App.css";
@@ -20,6 +21,7 @@ function App() {
           path="/destination/review-destination/:id"
           element={<Destination />}
         />
+        <Route path="/seeAlldestinations" element={<SeeAllDestinations />} />
         <Route path="/destination/create" element={<CreateDestination />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

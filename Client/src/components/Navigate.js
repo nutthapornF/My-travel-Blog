@@ -38,6 +38,7 @@ const Navbar = styled.div`
   font-family: "Montserrat", san-sarif;
   font-weight: 500;
   font-size: 17px;
+  z-index: 1;
 `;
 
 const Navlogo = styled.a`
