@@ -34,14 +34,16 @@ const LandingPage = () => {
     <Wrapper>
       <Navigate />
 
-      <div className="banner-area" id="home">
-        <BannerBg src={BGIMG} />
+      <Banner className="banner-area" id="home">
         <BannerTextWrapper>
-          <BannerText>
-            Desire <br /> destination
-          </BannerText>
+          <Textcontainer>
+            <BannerText>
+              where <br /> to <br /> next ?
+            </BannerText>
+          </Textcontainer>
         </BannerTextWrapper>
-      </div>
+        <BannerBg src={BGIMG} />
+      </Banner>
 
       <ZoneWrap className="about-area ABM" id="About">
         <TextPart className="text-part ">
@@ -114,7 +116,12 @@ const BlogWrap = styled.div`
 `;
 const Wrapper = styled.div`
   padding-bottom: 0px;
+  width: 100vw;
+`;
+
+const Banner = styled.div`
   width: 100%;
+  height: 100vh;
 `;
 const H1 = styled.h1`
   text-align: center;
@@ -128,23 +135,51 @@ const BannerBg = styled.img`
   background-repeat: no-repeat;
   -webkit-background-size: cover;
   background-size: cover;
+  object-fit: cover;
+  object-position: 10% 150%;
+  opacity: 0.5;
   z-index: -1;
 `;
 const BannerTextWrapper = styled.div`
-  width: 520px;
   position: absolute;
-  top: 250px;
-  right: 80px;
+  width: 100vw;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media (max-width: 768px) {
+  }
+`;
+const Textcontainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-top: solid white 1px;
   border-bottom: solid white 1px;
-  z-index: 0;
+  width: 500px;
+  background-color: rgb(200, 200, 200, 0.3);
+  border-radius: 15px;
+  @media (max-width: 768px) {
+    width: 350px;
+    padding: 20px;
+  }
+  @media (max-width: 425px) {
+    width: 300px;
+  }
 `;
 const BannerText = styled.h1`
-  font-size: 70px;
+  font-size: 60px;
   font-family: "Baskervville", serif;
   color: white;
   letter-spacing: 4px;
   text-align: center;
+  @media (max-width: 768px) {
+    font-size: 40px;
+    font-weight: 600;
+  }
+  @media (max-width: 425px) {
+    font-size: 30px;
+  }
 `;
 
 const ZoneWrap = styled.div`

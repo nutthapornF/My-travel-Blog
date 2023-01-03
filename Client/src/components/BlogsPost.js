@@ -50,8 +50,8 @@ const Blogs = ({ titleImg, id, topic, credit, tags, content1 }) => {
         <Blog key={id}>
           <img src={titleImg} alt={topic} width="200px;" />
           <H2>{topic}</H2>
-          <h6>{credit}</h6>
-          <h6>{tags}</h6>
+          <H6>{credit}</H6>
+          <H6>{tags}</H6>
           <P>{readMore ? content1 : `${content1.substring(0, 150)}...`}</P>
           <Button
             onClick={() => navigate(`/destination/review-destination/${id}`)}>
@@ -72,6 +72,9 @@ const ZoneWrap = styled.div`
   height: auto;
   background-color: #f5f5f5;
   padding: 0px 40px;
+  @media (max-width: 768px) {
+    padding: 0px 10px;
+  }
 `;
 const BlogsWrap = styled.div`
   display: flex;
@@ -88,21 +91,30 @@ const Blog = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 20px 30px;
+  @media (max-width: 768px) {
+    width: 200px;
+  }
+  @media (max-width: 425px) {
+    width: 150px;
+    height: 330px;
+    margin: 20px 10px;
+  }
 `;
-const H6 = styled.h1`
-  display: flex;
-  justify-content: flex-end;
-  padding: 30px;
-  font-family: "Montserrat", san-sarif;
-  font-size: 15px;
-  text-decoration-line: underline;
+const H6 = styled.h6`
+  font-size: 14px;
 `;
 const H2 = styled.h1`
   font-size: 25px;
+  @media (max-width: 425px) {
+    font-size: 20px;
+  }
 `;
 const P = styled.p`
   padding: 13px;
   font-size: 13px;
+  @media (max-width: 425px) {
+    display: none;
+  }
 `;
 const Button = styled.button`
   font-size: 15px;
@@ -114,5 +126,9 @@ const Button = styled.button`
   &:hover {
     background-color: #cc6600;
     border: #cc6600;
+  }
+  @media (max-width: 425px) {
+    font-size: 12px;
+    padding: 10px 10px;
   }
 `;

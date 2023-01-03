@@ -13,7 +13,7 @@ const Footer = () => {
       </LeftWrap>
       <LeftWrap>
         <Img src={Email} width="45px" />
-        <P>E-mail: Nuttha.fu@outlook.com | LineID : nickinickaa</P>
+        <P>Nuttha.fu@outlook.com</P>
       </LeftWrap>
 
       {/* <div>
@@ -37,20 +37,38 @@ const Wrapper = styled.div`
   height: 80px;
   background-color: black;
   color: #cc6600;
+  @media (max-width: 425px) {
+    padding: 0 15px 0 15px;
+    justify-content: space-between;
+  }
 `;
 const Img = styled.img`
   padding-top: 15px;
   padding-right: 20px;
+  @media (max-width: 425px) {
+    width: 35px;
+    height: 35px;
+    padding-right: 10px;
+  }
 `;
 const P = styled.p`
   padding-top: 16px;
   font-size: 15px;
+  @media (max-width: 425px) {
+    padding-top: 10px;
+    font-size: 13px;
+    line-height: 30px;
+  }
 `;
 
 const H1 = styled.h1`
   color: white;
   padding-right: 25px;
   font-size: 25px;
+  @media (max-width: 425px) {
+    font-size: 18px;
+    padding-right: 20;
+  }
 `;
 const Logowrap = styled.div`
   border-right: solid white 4px;
@@ -61,6 +79,11 @@ const LogoTextwrap = styled.div`
   color: white;
   padding-left: 20px;
   padding-top: 10px;
+  @media (max-width: 425px) {
+    display: none;
+    font-size: 12px;
+    padding-left: 10px;
+  }
 `;
 const LeftWrap = styled.div`
   display: flex;
