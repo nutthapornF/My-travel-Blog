@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 /* -------Pages --------- */
-import NavBar from "./components/Navigate";
-import LandingPage from "./components/LandingPage";
-import Footer from "./components/footer";
-import Destination from "./Pages/Destination";
+import NavBar from "./components/Navigation/Navigate";
+import LandingPage from "./Pages/LandingPage/LandingPage";
+import Footer from "./components/Footer/footer";
+import Destination from "./Pages/Destinations/Destination";
 import CreateDestination from "./Pages/CreateDestination";
 import NotFoundPage from "./Pages/NotFoundPage";
-import SeeAllDestinations from "./Pages/SeeAllDestinations";
+import SeeAllDestinations from "./Pages/seeAllDestination/SeeAllDestinations";
 import LoginPage from "./Pages/login";
 import { NavBarr } from "./components/nav";
 

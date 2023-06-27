@@ -1,31 +1,4 @@
-import styled from "@emotion/styled";
-import "../App.css";
-
-const NavBar = () => {
-  return (
-    <header>
-      <Navbar>
-        <Navlogo href="/" className="logo">
-          NIKKI F
-        </Navlogo>
-        <nav>
-          <Navlinks className="nav_links">
-            <Navlink href="/">Home</Navlink>
-            <Navlink href="#About">About</Navlink>
-            {/* <Navlink href="#Blog">Blogs</Navlink> */}
-          </Navlinks>
-        </nav>
-        <a href="#contact" className="cta">
-          {" "}
-          <ContactBtn className="duration-500">Blog</ContactBtn>
-        </a>
-      </Navbar>
-    </header>
-  );
-};
-
-export default NavBar;
-const Navbar = styled.div`
+.navWrapper {
   position: fixed;
   display: flex;
   flex-direction: row;
@@ -39,9 +12,8 @@ const Navbar = styled.div`
   font-weight: 500;
   font-size: 17px;
   z-index: 1;
-`;
-
-const Navlogo = styled.a`
+}
+.navlogo {
   color: #edf0f1;
   text-decoration: none;
   cursor: pointer;
@@ -53,9 +25,8 @@ const Navlogo = styled.a`
   &:hover {
     color: #cc6600;
   }
-`;
-
-const Navlinks = styled.div`
+}
+.navlinks {
   width: 300px;
   display: flex;
   justify-content: space-evenly;
@@ -64,16 +35,16 @@ const Navlinks = styled.div`
   &:hover {
     color: #cc6600;
   }
-`;
-const Navlink = styled.a`
+}
+
+.navlink {
   font-family: "Montserrat", san-sarif;
   font-weight: 500;
   font-size: 12px;
   color: #edf0f1;
   text-decoration: none;
-`;
-
-const ContactBtn = styled.button`
+}
+.contactBtn {
   padding: 9px 25px;
   text-decoration: none;
   background-color: #cc6600;
@@ -85,4 +56,4 @@ const ContactBtn = styled.button`
   font-weight: 500;
   font-size: 14px;
   color: #edf0f1;
-`;
+}

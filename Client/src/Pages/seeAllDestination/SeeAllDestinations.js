@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
 import axios from "axios";
-import Blogs from "../components/BlogsPost";
+import "./seeAllDestination.css";
+import Blogs from "../../components/BlogPost/BlogsPost";
 import { useState, useEffect } from "react";
-import { useFetch } from "../UseFetch/useFetch";
+import { useFetch } from "../../UseFetch/useFetch";
 
 function SeeAllDestinations() {
   const [destinationGet, setDestinationGet] = useState([]);
@@ -56,7 +57,7 @@ function SeeAllDestinations() {
     });
   };
   return (
-    <ZoneWrap>
+    <div className="seeAllDestination">
       <SearchBarWrap>
         {/* <SearchBar /> */}
         <div>
@@ -141,7 +142,7 @@ function SeeAllDestinations() {
           </button>
         </div>
       )}
-    </ZoneWrap>
+    </div>
   );
 }
 

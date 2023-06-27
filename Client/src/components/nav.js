@@ -19,7 +19,7 @@ export const NavBarr = () => {
           <a
             href="/login"
             className="text-white focus:ring-4 focus:outline-none focus:ring-orange-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 ">
-            <i class="fa-regular fa-face-smile"></i>
+            <i className="fa-regular fa-face-smile"></i>
           </a>
 
           <button
@@ -36,9 +36,9 @@ export const NavBarr = () => {
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg">
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                clip-rule="evenodd"></path>
+                clipRule="evenodd"></path>
             </svg>
           </button>
         </div>
