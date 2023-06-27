@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
-import "../App.css";
+import "../../App.css";
 
 import { useParams } from "react-router-dom";
-import Data from "../Data/BlogsData";
+import Data from "../../Data/BlogsData";
 import { useState, useEffect, CSSProperties } from "react";
 import PropagateLoader from "react-spinners/PropagateLoader";
 import axios from "axios";
