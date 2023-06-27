@@ -16,3 +16,42 @@ header {
     padding: 0;
     
 }
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .page-btn {
+    width: 2rem;
+    height: 2rem;
+    background: hsl(205, 90%, 76%);
+    border-color: transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0.5rem;
+    transition: all 0.3s linear;
+  }
+  .active-btn {
+    background: hsl(205, 86%, 17%);
+    color: #fff
+  }
+  .prev-btn,
+  .next-btn {
+    background: transparent;
+    border-color: transparent;
+    font-weight: bold;
+    text-transform: capitalize;
+    letter-spacing: var(--spacing);
+    margin: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  /* .banner-area{
+    @media(max-width:768px){
+      height: 100vh;
+      }
+  } */
+  /* .fa-face-smile{
+    color: red;
+  } */

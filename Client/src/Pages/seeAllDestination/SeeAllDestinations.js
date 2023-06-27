@@ -1,32 +1,63 @@
 import styled from "@emotion/styled";
 import axios from "axios";
-import Blogs from "../components/BlogsPost";
+import "./seeAllDestination.css";
+import Blogs from "../../components/BlogPost/BlogsPost";
 import { useState, useEffect } from "react";
+import { useFetch } from "../../UseFetch/useFetch";
 
 function SeeAllDestinations() {
   const [destinationGet, setDestinationGet] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const url = "http://localhost:4000/destination";
-  const getDestination = async () => {
-    try {
-      const results = await axios.get(url);
-      //ต้อง  reverse data เพื่อให้แสดงใบสมัครล่าสุดจากใหม่ -> เก่า
-      setDestinationGet(results.data.data);
-    } catch (error) {
-      console.log(error);
-    }
-    return {
-      destinationGet,
-    };
-  };
+  const { loading, data } = useFetch();
+  const [page, setPage] = useState(0);
+  const [stories, setStories] = useState([]);
 
+  console.log(data, "useFetch");
+  // const url = "http://localhost:4000/destination";
+  // const getDestination = async () => {
+  //   try {
+  //     const results = await axios.get(url);
+  //     //ต้อง  reverse data เพื่อให้แสดงใบสมัครล่าสุดจากใหม่ -> เก่า
+  //     setDestinationGet(results.data.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  //   return {
+  //     destinationGet,
+  //   };
+  // };
+
+  // useEffect(() => {
+  //   getDestination();
+  // }, []);
   useEffect(() => {
-    getDestination();
-  }, []);
-  //   let data = destinationGet?.map((places) => {});
-  //console.log(destinationGet[0].images[0]);
+    if (loading) return;
+    setStories(data[page]);
+  }, [loading, page]);
+
+  const handlePage = (index) => {
+    setPage(index);
+  };
+  const prevPage = () => {
+    setPage((oldPage) => {
+      let prevPage = oldPage - 1;
+      if (prevPage < 0) {
+        prevPage = data.length - 1;
+      }
+      return prevPage;
+    });
+  };
+  const nextPage = () => {
+    setPage((oldPage) => {
+      let nextPage = oldPage + 1;
+      if (nextPage > data.length - 1) {
+        nextPage = 0;
+      }
+      return nextPage;
+    });
+  };
   return (
-    <ZoneWrap>
+    <div className="seeAllDestination">
       <SearchBarWrap>
         {/* <SearchBar /> */}
         <div>
@@ -66,7 +97,7 @@ function SeeAllDestinations() {
         </div>
       </SearchBarWrap>
       <BlogWrap>
-        {destinationGet
+        {stories
           ?.filter((places) => {
             if (searchTerm == "") {
               return places;
@@ -91,7 +122,27 @@ function SeeAllDestinations() {
             );
           })}
       </BlogWrap>
-    </ZoneWrap>
+      {!loading && (
+        <div className="btn-container">
+          <button className="prev-btn" onClick={prevPage}>
+            prev
+          </button>
+          {data.map((item, index) => {
+            return (
+              <button
+                className={`page-btn ${index === page ? "active-btn" : null} `}
+                key={index}
+                onClick={() => handlePage(index)}>
+                {index + 1}
+              </button>
+            );
+          })}
+          <button className="next-btn" onClick={nextPage}>
+            next
+          </button>
+        </div>
+      )}
+    </div>
   );
 }
 
