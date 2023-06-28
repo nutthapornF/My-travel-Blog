@@ -49,7 +49,12 @@ const Blogs = ({ titleImg, id, topic, credit, tags, content1 }) => {
 
       <div className="BlogsWrap">
         <div className="Blog" key={id}>
-          <img src={titleImg} alt={topic} width="250px" />
+          <img
+            className="mainBlogImg"
+            src={titleImg}
+            alt={topic}
+            width="250px"
+          />
           <h2 className="H2">{topic}</h2>
           <h6 className="H6">{credit}</h6>
           <h6 className="H6">{tags}</h6>

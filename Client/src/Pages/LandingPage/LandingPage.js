@@ -2,11 +2,15 @@ import styled from "@emotion/styled";
 import "./landingPage.css";
 import "../../App.css";
 import BGIMG from "../../img/LandingPageBG.jpg";
+import CenterImg from "../../img/centerImg.jpg";
+import freeDiving from "../../img/freediving.JPG";
+
 import IG from "../../img/instagram.png";
 import GitHub from "../../img/gitHub.png";
 import Navigate from "../../components/Navigation/Navigate";
 import myPic from "../../img/Me.jpg";
 import Blogs from "../../components/BlogPost/BlogsPost";
+import HorizontalCard from "../../components/BlogPost/HorizontalCard";
 import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 
@@ -27,10 +31,12 @@ const LandingPage = () => {
       destinationGet,
     };
   };
-  console.log(destinationGet);
+  // console.log(destinationGet);
   useEffect(() => {
     getDestination();
   }, []);
+  let date = Date();
+  console.log(destinationGet);
   return (
     <div className="Wrapper">
       <Navigate />
@@ -38,12 +44,27 @@ const LandingPage = () => {
       <div className="Banner banner-area" id="home">
         <div className="BannerTextWrapper">
           <div className="Textcontainer">
+            <div className="date">
+              <p className="dateTitle"> Date</p> {date.substring(0, 16)}
+            </div>
             <h1 className="BannerText">
-              where <br /> to <br /> next ?
+              Where To <br /> Next
             </h1>
           </div>
         </div>
-        <img className="BannerBg" src={BGIMG} />
+        {/* <img className="BannerBg" src={BGIMG} /> */}
+        <div className="bgWrapper">
+          <img className="BannerBg" src={CenterImg} />
+        </div>
+
+        <div className="rightLanding">
+          It is Not in the Stars to hold out destiny But in Ourself
+          <img className="rigthImg" src={freeDiving} />
+          <div className="igCredit">
+            <img className="creditImg" src={CenterImg} />
+            <p className="igName">wonderer.nn</p>
+          </div>
+        </div>
       </div>
 
       <div className="ZoneWrap aboutZone" id="About">
@@ -79,29 +100,42 @@ const LandingPage = () => {
             </div>
           </div>
         </div>
-        {/* <div className="img-section">
+      </div>
+      {/* <div className="img-section">
           <img src={myPic} width="240" alt="myPicture" className="myPic" />
         </div> */}
-      </div>
+      {/* </div> */}
 
-      <div className="BlogWrapper">
-        {destinationGet?.map((places) => {
-          return (
-            <Blogs
-              key={places._id}
-              id={places._id}
-              titleImg={places.images[0].url}
-              topic={places.topic}
-              credit={places.credit}
-              tags={places.tags}
-              content1={places.content1}
-            />
-          );
+      <div className="editorPost">
+        <h1 className="editorTopic">Editor's(me) Post</h1>
+        <div className="wonderP">My Wonder Around</div>
+      </div>
+      <div className="horizonMainWrap" style={{ width: "100%" }}>
+        {destinationGet?.map((places, i) => {
+          console.log(places);
+          return <HorizontalCard key={i} place={places} />;
         })}
       </div>
-      <div className="navBtn">
+      {/* <div className="BlogWrapper">
+        <div className="blogsWrap">
+          {destinationGet?.map((places) => {
+            return (
+              <Blogs
+                key={places._id}
+                id={places._id}
+                titleImg={places.images[0].url}
+                topic={places.topic}
+                credit={places.credit}
+                tags={places.tags}
+                content1={places.content1}
+              />
+            );
+          })}
+        </div>
+      </div> */}
+      {/* <div className="navBtn">
         <a href="/seeAlldestinations">See all Destinations . . . </a>
-      </div>
+      </div> */}
     </div>
   );
 };
