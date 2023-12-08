@@ -13,7 +13,7 @@ export const useFetch = () => {
       const res = await axios.get(url);
       const dataInfo = res.data.data;
 
-      setData(paginate(dataInfo));
+      setData(paginate(dataInfo.reverse())); //reverse ให้อันเก่าขี่นก่อน
       setLoading(false);
     } catch (err) {
       console.log(err);

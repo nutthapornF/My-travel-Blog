@@ -2,6 +2,7 @@
 .Wrapper {
   padding-bottom: 0px;
   width: 100vw;
+  /* height: 100vh; */
 }
 .Banner {
   width: 100%;
@@ -34,14 +35,48 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  /* @media screen and (max-width: 375px) {
+    width: 100%;
+  } */
+  @media (max-width: 915px) {
+    width: 65%;
+  }
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 }
 .BannerBg {
   height: 93%;
   padding: 0;
+  object-fit: cover;
+  @media screen and (max-width: 600px) {
+    width: 100%;
+    /* opacity: 0.8; */
+  }
 }
 
 .BannerTextWrapper {
   width: 27%;
+
+  @media (max-width: 600px) {
+    width: 37%;
+    height: 20%;
+    position: absolute;
+    bottom: 20%;
+    left: 5%;
+    background: rgb(128, 128, 128, 0.5);
+    border-radius: 10px;
+
+    /* padding: 10px 30px; */
+    /* box-sizing: border-box; */
+  }
+  @media (max-width: 920px) {
+    width: 38%;
+    padding: 15px;
+
+    /* padding: 10px 30px; */
+    /* box-sizing: border-box; */
+  }
 }
 
 .Textcontainer {
@@ -49,18 +84,33 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  @media (max-width: 600px) {
+    z-index: 10;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
 }
 .date {
   text-align: left;
   width: 79%;
   margin-bottom: 15px;
+  width: 100%;
+  @media (max-width: 600px) {
+    color: white;
+  }
 }
 .dateTitle {
   font-weight: 900;
+  @media (max-width: 600px) {
+    color: white;
+  }
 }
 .BannerText {
   font-size: 60px;
   line-height: 90%;
+  padding: 0;
   /* font-family: "Baskervville", serif; */
   font-family: "Raleway", sans-serif;
   font-weight: 700;
@@ -69,10 +119,12 @@
   text-align: center;
   @media (max-width: 768px) {
     font-size: 40px;
-    font-weight: 600;
+    /* font-weight: 600; */
   }
-  @media (max-width: 425px) {
+  @media (max-width: 600px) {
     font-size: 30px;
+    color: white;
+    text-align: left;
   }
 }
 .rightLanding {
@@ -83,6 +135,12 @@
   align-items: center;
   justify-content: center;
   /* padding-bottom: 20px; */
+  /* @media (max-width: 600px) {
+    display: none;
+  } */
+  @media (max-width: 920px) {
+    display: none;
+  }
 }
 .rigthImg {
   width: 300px;
@@ -175,12 +233,19 @@
 /* --------------- Second section */
 .editorPost {
   padding: 0 50px 0 50px;
+  height: fit-content;
+  @media (max-width: 600px) {
+    margin-bottom: 20px;
+  }
 }
 .editorTopic {
   font-size: 38px;
   font-weight: 900;
   color: black;
   font-family: "Raleway", sans-serif;
+  @media (max-width: 600px) {
+    font-size: 22px;
+  }
 }
 .wonderP {
   padding: 1px 0 1px 10px;

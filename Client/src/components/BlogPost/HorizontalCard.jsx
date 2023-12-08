@@ -6,6 +6,9 @@ import { DestinationDataContect } from "../../context/DestinationData";
 
 const HorizontalCard = (place) => {
   const [destinationData, setDestinationData] = useState([]);
+  const [placeData, setPlaceData] = useState(
+    JSON.parse(place.place.blogContent)
+  );
   const navigate = useNavigate();
   const url = "http://localhost:4000/destination";
 
@@ -24,7 +27,7 @@ const HorizontalCard = (place) => {
   useEffect(() => {
     getDestination();
   }, []);
-  //   console.log(place?.place);
+  // console.log(placeData[0]);
   //   console.log(destinationData);
 
   return (
@@ -37,12 +40,10 @@ const HorizontalCard = (place) => {
       <div className="horizontalContent">
         <div className="insideContent">
           <div className="tags">
-            <p className="horizonTagP">{place?.place.tags}</p>
+            <p className="horizonTagP">{JSON.parse(place?.place.tags)}</p>
           </div>
-          <h1 className="horizonTitle">{place?.place.topic}</h1>
-          <p className="horizontalP">
-            {place?.place.content1?.substring(0, 380)}
-          </p>
+          <h1 className="horizonTitle">{JSON.parse(place?.place.topic)}</h1>
+          <p className="horizontalP">{placeData[0]?.substring(0, 340)} ...</p>
           <div className="horizonBtnWrap">
             <div
               className="horizonBtn"

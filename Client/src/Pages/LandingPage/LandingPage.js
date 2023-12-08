@@ -31,16 +31,12 @@ const LandingPage = () => {
       destinationGet,
     };
   };
-  // console.log(destinationGet);
   useEffect(() => {
     getDestination();
   }, []);
   let date = Date();
-  console.log(destinationGet);
   return (
     <div className="Wrapper">
-      <Navigate />
-
       <div className="Banner banner-area" id="home">
         <div className="BannerTextWrapper">
           <div className="Textcontainer">
@@ -58,16 +54,18 @@ const LandingPage = () => {
         </div>
 
         <div className="rightLanding">
-          It is Not in the Stars to hold out destiny But in Ourself
+          Hi, My name is Nikki. <br /> Thank you for visiting my journey !
           <img className="rigthImg" src={freeDiving} />
           <div className="igCredit">
             <img className="creditImg" src={CenterImg} />
-            <p className="igName">wonderer.nn</p>
+            <a href="https://www.instagram.com/wonderer.nn/" className="igName">
+              wonderer.nn
+            </a>
           </div>
         </div>
       </div>
 
-      <div className="ZoneWrap aboutZone" id="About">
+      {/* <div className="ZoneWrap aboutZone" id="About">
         <h1 className="H1 ABMH1">About Me</h1>
         <div className="TextPart">
           <div className="selfIntroWrap">
@@ -100,7 +98,7 @@ const LandingPage = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       {/* <div className="img-section">
           <img src={myPic} width="240" alt="myPicture" className="myPic" />
         </div> */}
@@ -112,7 +110,7 @@ const LandingPage = () => {
       </div>
       <div className="horizonMainWrap" style={{ width: "100%" }}>
         {destinationGet?.map((places, i) => {
-          console.log(places);
+          // console.log(places);
           return <HorizontalCard key={i} place={places} />;
         })}
       </div>
@@ -199,7 +197,7 @@ export default LandingPage;
 //     width: 350px;
 //     padding: 20px;
 //   }
-//   @media (max-width: 425px) {
+//   @media (max-width: 600px) {
 //     width: 300px;
 //   }
 // `;
@@ -213,7 +211,7 @@ export default LandingPage;
 //     font-size: 40px;
 //     font-weight: 600;
 //   }
-//   @media (max-width: 425px) {
+//   @media (max-width: 600px) {
 //     font-size: 30px;
 //   }
 // `;
