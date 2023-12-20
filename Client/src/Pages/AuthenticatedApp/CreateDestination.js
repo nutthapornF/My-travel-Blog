@@ -1,6 +1,6 @@
-import "../App.css";
+// import "../App.css";
+import "../styledPage.css";
 import styled from "@emotion/styled";
-import "./styledPage.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 

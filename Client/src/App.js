@@ -4,7 +4,8 @@ import NavBar from "./components/Navigation/Navigate";
 import LandingPage from "./Pages/LandingPage/LandingPage";
 import Footer from "./components/Footer/footer";
 import Destination from "./Pages/Destinations/Destination";
-import CreateDestination from "./Pages/CreateDestination";
+
+import CreateDestination from "./Pages/AuthenticatedApp/CreateDestination.js";
 import NotFoundPage from "./Pages/NotFoundPage";
 import SeeAllDestinations from "./Pages/seeAllDestination/SeeAllDestinations";
 import LoginPage from "./Pages/Authentication/login.js";

@@ -1,35 +1,45 @@
 import "../styledPage.css";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 // import Img from "../img/LandingPageBG.jpg";
 import Img from "../../img/LandingPageBG.jpg";
+import { useAuth } from "../../context/AuthProvider";
+
 export default function RegistPage() {
   const [userInfo, setUserInfo] = useState({
-    email: "email",
-    password: "password",
-    first_name: "first_name",
-    last_name: "last_name",
+    email: "",
+    password: "",
+    first_name: "",
+    last_name: "",
   });
   const navigate = useNavigate();
-
-  const createUser = async (data) => {
-    await axios.post("http://localhost:4000/auth/regist", data, {
-      headers: { "Content-Type": "multipart/form-data" },
-    });
-  };
+  const { register } = useAuth();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const formData = new FormData();
-    formData.append("email", JSON.stringify(userInfo.email));
-    formData.append("password", JSON.stringify(userInfo.password));
-    formData.append("first_name", JSON.stringify(userInfo.first_name));
-    formData.append("last_name", JSON.stringify(userInfo.last_name));
-    console.log(userInfo);
-    createUser(formData);
-  };
+    if (
+      userInfo.email == "" ||
+      userInfo.password == "" ||
+      userInfo.first_name == "" ||
+      userInfo.last_name == ""
+    ) {
+      console.log("all in put is required");
+    }
+    // const formData = new FormData();
+    // formData.append("email", JSON.stringify(userInfo.email));
+    // formData.append("password", JSON.stringify(userInfo.password));
+    // formData.append("first_name", JSON.stringify(userInfo.first_name));
+    // formData.append("last_name", JSON.stringify(userInfo.last_name));
+    // console.log(userInfo);
+    // console.log("formData", formData);
 
+    register(userInfo);
+    console.log("submitted");
+  };
+  useEffect(() => {
+    console.log(userInfo);
+  }, [userInfo]);
   return (
     <div className="mainLoginWrap">
       <div className="contentWrapper">
