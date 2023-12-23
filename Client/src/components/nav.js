@@ -1,6 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useAuth } from "../context/AuthProvider";
 //import { facesmile } from "@fortawesome/free-regular-svg-icons";
 export const NavBarr = () => {
+  const auth = useAuth();
   return (
     <nav className="bg-white px-2 sm:px-4 py-2.5 dark:bg-zinc-900 fixed w-full z-20 top-0 left-0 border-b border-zinc-900 dark:border-zinc-900">
       <div className="container flex flex-wrap justify-between px-6 items-center mx-auto">
@@ -17,7 +19,7 @@ export const NavBarr = () => {
             <a href="/seeAlldestinations">Blog</a>
           </button>
           <a
-            href="/login"
+            href={auth?.isAuthenticated ? "/destination/create" : "/login"}
             className="text-white focus:ring-4 focus:outline-none focus:ring-orange-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 ">
             <i className="fa-regular fa-face-smile"></i>
           </a>

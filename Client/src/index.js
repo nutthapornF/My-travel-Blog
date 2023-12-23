@@ -6,14 +6,19 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { DestinationDataProvider } from "./context/DestinationData";
 import { AuthProvider } from "./context/AuthProvider";
+import jwtInterceptor from "./utils/jwtInterceptor";
+
+jwtInterceptor();
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <DestinationDataProvider>
-      <AuthProvider>
-        <App />
-      </AuthProvider>
-    </DestinationDataProvider>
+    <BrowserRouter>
+      <DestinationDataProvider>
+        <AuthProvider>
+          <App />
+        </AuthProvider>
+      </DestinationDataProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

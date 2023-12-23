@@ -6,7 +6,8 @@
 }
 .Banner {
   width: 100%;
-  height: calc(100vh - 72px);
+  /* height: calc(100vh - 72px); */
+  height: 100vh;
   /* -------- */
   display: flex;
   justify-content: space-between;
@@ -192,6 +193,9 @@
 .seltIntroduction {
   font-size: 18px;
   margin-top: 20px;
+}
+.introH1 {
+  color: black;
 }
 .SocialLogos {
   display: flex;

@@ -8,7 +8,7 @@ import { useFetch } from "../../UseFetch/useFetch";
 function SeeAllDestinations() {
   const [destinationGet, setDestinationGet] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const { loading, data } = useFetch();
+  const { loading, data } = useFetch("http://localhost:4000/destination");
   const [page, setPage] = useState(0);
   const [stories, setStories] = useState([]);
 
@@ -39,7 +39,7 @@ function SeeAllDestinations() {
     });
   };
   // console.log(data);
-  console.log(stories);
+  console.log(data);
 
   return (
     <div className="seeAllDestination">

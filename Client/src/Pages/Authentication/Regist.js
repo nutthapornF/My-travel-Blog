@@ -24,6 +24,7 @@ export default function RegistPage() {
       userInfo.first_name == "" ||
       userInfo.last_name == ""
     ) {
+      //// have to do something about this
       console.log("all in put is required");
     }
     // const formData = new FormData();
@@ -37,9 +38,7 @@ export default function RegistPage() {
     register(userInfo);
     console.log("submitted");
   };
-  useEffect(() => {
-    console.log(userInfo);
-  }, [userInfo]);
+
   return (
     <div className="mainLoginWrap">
       <div className="contentWrapper">
