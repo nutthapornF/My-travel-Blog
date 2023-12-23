@@ -1,10 +1,9 @@
 import express from "express";
+import cors from "cors";
 import mongoose from "mongoose";
 import multer from "multer";
 import bodyParser from "body-parser";
 import cloudinary from "cloudinary";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 
 import { Router } from "express";
 import { ObjectId } from "mongodb";
@@ -13,10 +12,13 @@ import dotenv from "dotenv";
 import { cloudinaryUpload } from "./utils/upload.js";
 import { mongooseUser } from "./model/user.js";
 
-import authRouter from "./auth/index.js";
-import { register } from "./controller/authController.js";
+// import { register } from "./controller/authController.js";
 import { db } from "./utils/db.js";
 import { createError } from "./utils/error.js";
+
+import { protect } from "./middlewares/protect.js";
+import { login, register } from "./controller/authController.js";
+import authRouter from "./auth/index.js";
 
 // เรียกใช้ Function `connect` จาก `client`
 // อย่าลืม `await` เนื่องจาก `connect`เป็น async
@@ -47,16 +49,24 @@ async function init() {
     );
     next();
   });
+  app.use(
+    cors({
+      origin: "*",
+    })
+  );
+
+  /// will have to update to text-emphasis:
+  /* const cors = require('cors');
+app.use(cors({
+    origin: ['https://www.section.io', 'https://www.google.com/']
+})); */
+
+  dataRouter.use(protect);
 
   // app.use("/auth", authRouter);
 
   const multerUpload = multer({ dest: "uploads/" });
   const imagesUpload = multerUpload.fields([{ name: "images", maxCount: 28 }]);
-
-  // const storage = multer.memoryStorage();
-  // const upload = multer({ storage: storage });
-
-  // const upload = multer({ dest: "./uploads/" });
 
   /* ------------Router zone --------------- */
 
@@ -103,84 +113,9 @@ async function init() {
       console.log(error);
     }
   });
-  // regist  -----------------
-  app.post("/auth/regist", async (req, res) => {
-    try {
-      console.log("init....");
-      console.log(req.body);
-      const { first_name, last_name, email, password } = req.body;
-
-      if (!(email && password && first_name && last_name)) {
-        res.status(400).send("All input is required");
-      }
-      //valide password
-      if (typeof password !== "string") {
-        console.log("---------------------------");
-        console.log("password", password);
-        console.log("req.body", req.body);
-        throw Error("Password is required");
-      }
-      // hashing password
-      const salt = await bcrypt.genSalt(10);
-      const encryptedPassword = await bcrypt.hash(password, salt);
-
-      const user = {
-        first_name,
-        last_name,
-        email: email.toLowerCase(),
-        password: encryptedPassword,
-      };
-      await db.collection("user").insertOne(user);
-      res.status(200).json(`User has been created successfully`);
-    } catch (error) {
-      console.log(error);
-    }
-  });
-
-  //login ------------------------------------------------
-  app.post("/auth/login", async (req, res) => {
-    try {
-      console.log(req.body.email);
-      const user = await db.collection("user").findOne({
-        email: req.body.email,
-      });
-
-      if (!user) {
-        next(createError(400, "User not found"));
-      }
-
-      const isValidPassword = await bcrypt.compare(
-        req.body.password,
-        user.password
-      );
-
-      if (!isValidPassword) {
-        next(createError(400, "Password is not valid"));
-      }
-
-      const token = jwt.sign(
-        {
-          id: user._id,
-          email: user.email,
-          first_name: user.first_name,
-          last_name: user.last_name,
-        },
-        process.env.SECRET_KEY,
-        {
-          expiresIn: "24h",
-        }
-      );
-
-      res.status(200).json({
-        message: `Login Successful! Welcome ${user.email}`,
-        user_id: user._id,
-
-        token,
-      });
-    } catch (error) {
-      next(error);
-    }
-  });
+  // regist  ---Login--------------
+  app.post("/auth/regist", register);
+  app.post("/auth/login", login);
 
   // create new destination ---> see to it if we have to add json body manually
   app.post("/destination/create", imagesUpload, async (req, res) => {
