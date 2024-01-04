@@ -1,7 +1,8 @@
 import IG from "../../img/instagram.png";
 import GitHub from "../../img/gitHub.png";
 import myPic from "../../img/Me.jpg";
-import "../LandingPage/landingPage.css";
+// import "../LandingPage/landingPage.css";
+import "./aboutMe.css";
 
 const AboutMePage = () => {
   return (

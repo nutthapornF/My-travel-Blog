@@ -1,0 +1,47 @@
+.ZoneWrap.aboutZone {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 35px;
+  /* background: #18181b; */
+  color: black;
+}
+.ABMH1 {
+  color: black;
+}
+.TextPart {
+  width: 80%;
+  display: flex;
+  /* flex-direction: row; */
+  justify-content: center;
+  align-items: center;
+  height: auto;
+}
+.selfIntroWrap {
+  width: 40%;
+}
+.seltIntroduction {
+  font-size: 18px;
+  margin-top: 20px;
+}
+.introH1 {
+  color: black;
+}
+.SocialLogos {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+}
+.LogoPicWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 30px;
+}
+.SCLogo {
+  padding: 20px;
+}
+.Img {
+  border-radius: 50%;
+}
