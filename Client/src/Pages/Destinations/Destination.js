@@ -9,6 +9,7 @@ import axios from "axios";
 function Destination() {
   const [destinationData, setDestinationData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [content, setContent] = useState();
   const params = useParams();
   // let { id } = useParams();
   //console.log(params);
@@ -32,7 +33,8 @@ function Destination() {
       const results = await axios.get(
         `http://localhost:4000/destination/${params.id}`
       );
-
+      // console.log(JSON.parse(results.data.data));
+      setContent(JSON.parse(results.data.data.blogContent));
       setDestinationData(results.data.data);
       setLoading(false);
     } catch (error) {
@@ -40,6 +42,7 @@ function Destination() {
     }
     return {
       destinationData,
+      content,
     };
   };
 
@@ -47,7 +50,8 @@ function Destination() {
     getOneDestination();
   }, []);
 
-  //console.log(destinationData);
+  // console.log(destinationData);
+  // console.log(content);
 
   return (
     <div>
@@ -74,8 +78,8 @@ function Destination() {
                     : ""
                 }
               />
-              <P>{destinationData?.content1}</P>
-              <P>{destinationData?.content2}</P>
+              <P>{content ? content[0] : ""}</P>
+              <P>{content ? content[1] : ""}</P>
             </div>
             <div>
               <Img
@@ -92,8 +96,8 @@ function Destination() {
                     : ""
                 }
               />
-              <P>{destinationData?.content3}</P>
-              <P>{destinationData?.content4} </P>
+              <P>{content ? content[3] : ""}</P>
+              <P>{content ? content[4] : ""} </P>
             </div>
             <div>
               <Img
@@ -125,7 +129,7 @@ function Destination() {
                 }
               />
             </div>
-            <P>{destinationData?.content5}</P>
+            <P>{content ? content[5] : ""}</P>
             <div>
               <Img
                 src={
@@ -141,7 +145,7 @@ function Destination() {
                     : ""
                 }
               />
-              <P>{destinationData?.content6} </P>
+              <P>{content ? content[6] : ""} </P>
             </div>
             <div>
               <Img
@@ -158,8 +162,8 @@ function Destination() {
                     : ""
                 }
               />
-              <P>{destinationData?.content7}</P>
-              <P>{destinationData?.content8} </P>
+              <P>{content ? content[7] : ""}</P>
+              <P>{content ? content[8] : ""} </P>
             </div>
             <div>
               <Img
@@ -176,8 +180,8 @@ function Destination() {
                     : ""
                 }
               />
-              <P>{destinationData?.content9}</P>
-              <P>{destinationData?.content10} </P>
+              <P>{content ? content[9] : ""}</P>
+              <P>{content ? content[10] : ""} </P>
             </div>
             <div>
               <Img
@@ -187,8 +191,8 @@ function Destination() {
                     : ""
                 }
               />
-              <P>{destinationData?.content11}</P>
-              <P>{destinationData?.content12} </P>
+              <P>{content ? content[11] : ""}</P>
+              <P>{content ? content[12] : ""} </P>
               <Img
                 src={
                   destinationData?.images?.length > 0
@@ -203,8 +207,8 @@ function Destination() {
                     : ""
                 }
               />
-              <P>{destinationData?.content13} </P>
-              <P>{destinationData?.content14} </P>
+              <P>{content ? content[13] : ""} </P>
+              <P>{content ? content[14] : ""} </P>
             </div>
             <div>
               <Img
@@ -221,8 +225,8 @@ function Destination() {
                     : ""
                 }
               />
-              <P>{destinationData?.content15}</P>
-              <P>{destinationData?.content16} </P>
+              <P>{content ? content[15] : ""}</P>
+              <P>{content ? content[16] : ""} </P>
             </div>
             <div>
               <Img
@@ -239,7 +243,7 @@ function Destination() {
                     : ""
                 }
               />
-              <P>{destinationData?.content17}</P>
+              <P>{content ? content[16] : ""}</P>
               <Img
                 src={
                   destinationData?.images?.length > 0
@@ -247,7 +251,7 @@ function Destination() {
                     : ""
                 }
               />
-              <P>{destinationData?.content18} </P>
+              <P>{content ? content[17] : ""} </P>
             </div>
             <div>
               <Img
@@ -264,8 +268,8 @@ function Destination() {
                     : ""
                 }
               />
-              <P>{destinationData?.content19} </P>
-              <P>{destinationData?.content20} </P>
+              <P>{content ? content[18] : ""} </P>
+              <P>{content ? content[19] : ""} </P>
             </div>{" "}
           </ContentWrapper>
         </Wrapper>

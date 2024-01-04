@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import paginate from "../context/pagination";
 //import paginate from './utils'
-const url = "http://localhost:4000/destination";
+// const url = "http://localhost:4000/destination";
 
-export const useFetch = () => {
+export const useFetch = (url) => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
@@ -13,7 +13,7 @@ export const useFetch = () => {
       const res = await axios.get(url);
       const dataInfo = res.data.data;
 
-      setData(paginate(dataInfo));
+      setData(paginate(dataInfo.reverse())); //reverse ให้อันเก่าขี่นก่อน
       setLoading(false);
     } catch (err) {
       console.log(err);

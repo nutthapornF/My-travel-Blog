@@ -1,6 +1,6 @@
 const paginate = (followers) => {
   //make arr into small 10s data per arr
-  const itemsPerPage = 3;
+  const itemsPerPage = 6;
   const pages = Math.ceil(followers.length / itemsPerPage);
   //create new Arr with( Pages) items
   const newFollowers = Array.from({ length: pages }, (_, index) => {

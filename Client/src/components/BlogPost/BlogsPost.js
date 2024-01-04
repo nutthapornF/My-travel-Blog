@@ -39,8 +39,6 @@ const Blogs = ({ titleImg, id, topic, credit, tags, content1 }) => {
   //   navigate("/Destination");
   // };
 
-  // console.log(destinationData);
-
   return (
     <div className="ZoneWrap" id="#Blog">
       {/* <H6>
@@ -49,12 +47,17 @@ const Blogs = ({ titleImg, id, topic, credit, tags, content1 }) => {
 
       <div className="BlogsWrap">
         <div className="Blog" key={id}>
-          <img src={titleImg} alt={topic} width="250px" />
-          <h2 className="H2">{topic}</h2>
-          <h6 className="H6">{credit}</h6>
-          <h6 className="H6">{tags}</h6>
+          <img
+            className="mainBlogImg"
+            src={titleImg}
+            alt={topic}
+            width="250px"
+          />
+          <h2 className="H2">{JSON.parse(topic)}</h2>
+          <h6 className="H6">{JSON.parse(credit)}</h6>
+          <h6 className="H6">{JSON.parse(tags)}</h6>
           <p className="P">
-            {readMore ? content1 : `${content1.substring(0, 150)}...`}
+            {readMore ? content1[0] : `${content1[0].substring(0, 150)}...`}
           </p>
           <button
             className="Button"

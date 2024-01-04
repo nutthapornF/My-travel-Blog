@@ -8,28 +8,10 @@ import { useFetch } from "../../UseFetch/useFetch";
 function SeeAllDestinations() {
   const [destinationGet, setDestinationGet] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const { loading, data } = useFetch();
+  const { loading, data } = useFetch("http://localhost:4000/destination");
   const [page, setPage] = useState(0);
   const [stories, setStories] = useState([]);
 
-  console.log(data, "useFetch");
-  // const url = "http://localhost:4000/destination";
-  // const getDestination = async () => {
-  //   try {
-  //     const results = await axios.get(url);
-  //     //ต้อง  reverse data เพื่อให้แสดงใบสมัครล่าสุดจากใหม่ -> เก่า
-  //     setDestinationGet(results.data.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  //   return {
-  //     destinationGet,
-  //   };
-  // };
-
-  // useEffect(() => {
-  //   getDestination();
-  // }, []);
   useEffect(() => {
     if (loading) return;
     setStories(data[page]);
@@ -56,9 +38,13 @@ function SeeAllDestinations() {
       return nextPage;
     });
   };
+  // console.log(data);
+  console.log(data);
+
   return (
     <div className="seeAllDestination">
-      <SearchBarWrap>
+      <div className="searchBarWrap">
+        {/* Search bar is searched by topic */}
         {/* <SearchBar /> */}
         <div>
           <div className="flex justify-center">
@@ -95,8 +81,8 @@ function SeeAllDestinations() {
             </div>
           </div>
         </div>
-      </SearchBarWrap>
-      <BlogWrap>
+      </div>
+      <div className="blogWrap">
         {stories
           ?.filter((places) => {
             if (searchTerm == "") {
@@ -109,19 +95,22 @@ function SeeAllDestinations() {
               return places;
             }
           })
-          .map((places) => {
+          .map((places, i) => {
+            // console.log(JSON.parse(places.blogContent));
             return (
               <Blogs
+                key={i}
                 id={places._id}
                 titleImg={places.images[0].url}
                 topic={places.topic}
                 credit={places.credit}
                 tags={places.tags}
-                content1={places.content1}
+                content1={JSON.parse(places.blogContent)}
               />
             );
           })}
-      </BlogWrap>
+      </div>
+      {/* if loaded, show the data (list of places) */}
       {!loading && (
         <div className="btn-container">
           <button className="prev-btn" onClick={prevPage}>

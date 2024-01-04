@@ -1,13 +1,24 @@
 import express from "express";
+import cors from "cors";
 import mongoose from "mongoose";
-import { Router } from "express";
-import { ObjectId } from "mongodb";
 import multer from "multer";
 import bodyParser from "body-parser";
+import cloudinary from "cloudinary";
+
+import { Router } from "express";
+import { ObjectId } from "mongodb";
 import { client } from "./utils/db.js";
 import dotenv from "dotenv";
-import cloudinary from "cloudinary";
 import { cloudinaryUpload } from "./utils/upload.js";
+import { mongooseUser } from "./model/user.js";
+
+// import { register } from "./controller/authController.js";
+import { db } from "./utils/db.js";
+import { createError } from "./utils/error.js";
+
+import { protect } from "./middlewares/protect.js";
+import { login, register } from "./controller/authController.js";
+import authRouter from "./auth/index.js";
 
 // เรียกใช้ Function `connect` จาก `client`
 // อย่าลืม `await` เนื่องจาก `connect`เป็น async
@@ -15,8 +26,10 @@ async function init() {
   const app = express();
   const port = 4000;
   const dataRouter = Router();
+
   await client.connect();
   app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: true }));
 
   dotenv.config();
   cloudinary.config({
@@ -36,16 +49,47 @@ async function init() {
     );
     next();
   });
+  app.use(
+    cors({
+      origin: "*",
+    })
+  );
+
+  /// will have to update to text-emphasis:
+  /* const cors = require('cors');
+app.use(cors({
+    origin: ['https://www.section.io', 'https://www.google.com/']
+})); */
+
+  dataRouter.use(protect);
+
+  // app.use("/auth", authRouter);
 
   const multerUpload = multer({ dest: "uploads/" });
   const imagesUpload = multerUpload.fields([{ name: "images", maxCount: 28 }]);
 
   /* ------------Router zone --------------- */
+
   // get all destination -----------------
   app.get("/destination", async (req, res) => {
     try {
       const db = client.db("travelsite").collection("destination");
       const result = await db.find({}).toArray();
+      console.log(result);
+      console.log("------");
+      return res.json({
+        data: result,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  });
+
+  //--- get 4 estination ---------------
+  app.get("/destination/limit", async (req, res) => {
+    try {
+      const db = client.db("travelsite").collection("destination");
+      const result = await db.find({}).limit(3).toArray();
       console.log(result);
       return res.json({
         data: result,
@@ -69,9 +113,16 @@ async function init() {
       console.log(error);
     }
   });
+  // regist  ---Login--------------
+  app.post("/auth/regist", register);
+  app.post("/auth/login", login);
+
   // create new destination ---> see to it if we have to add json body manually
   app.post("/destination/create", imagesUpload, async (req, res) => {
     try {
+      console.log("init....");
+      console.log(req.body);
+
       const db = client.db("travelsite").collection("destination");
       const newDestination = {
         ...req.body,
@@ -80,11 +131,12 @@ async function init() {
       newDestination["images"] = imagesUrl;
       await db.insertOne(newDestination);
       res.status(200).json(`New destination has been created `);
-      console.log(newDestination, "destination has been created");
+      // console.log(newDestination, "destination has been created");
     } catch (error) {
       console.log(error);
     }
   });
+
   // update destination ----
   app.put("/destination/update/:id", async (req, res) => {
     try {

@@ -13,9 +13,9 @@ const Footer = () => {
         </div>
         <div className="LogoTextwrap">Make holiday planning easier</div>
       </div>
-      <div className="leftWrap">
-        <img src={Email} width="45px" />
-        <p>Nuttha.fu@outlook.com</p>
+      <div className="rightWrap">
+        <img className="emailImg" src={Email} width="35px" />
+        <p className="email">Nuttha.fu@outlook.com</p>
       </div>
 
       {/* <div>
@@ -39,7 +39,7 @@ export default Footer;
 //   height: 80px;
 //   background-color: black;
 //   color: #cc6600;
-//   @media (max-width: 425px) {
+//   @media (max-width: 600px) {
 //     padding: 0 15px 0 15px;
 //     justify-content: space-between;
 //   }
@@ -47,7 +47,7 @@ export default Footer;
 // const Img = styled.img`
 //   padding-top: 15px;
 //   padding-right: 20px;
-//   @media (max-width: 425px) {
+//   @media (max-width: 600px) {
 //     width: 35px;
 //     height: 35px;
 //     padding-right: 10px;
@@ -56,7 +56,7 @@ export default Footer;
 // const P = styled.p`
 //   padding-top: 16px;
 //   font-size: 15px;
-//   @media (max-width: 425px) {
+//   @media (max-width: 600px) {
 //     padding-top: 10px;
 //     font-size: 13px;
 //     line-height: 30px;
@@ -67,7 +67,7 @@ export default Footer;
 //   color: white;
 //   padding-right: 25px;
 //   font-size: 25px;
-//   @media (max-width: 425px) {
+//   @media (max-width: 600px) {
 //     font-size: 18px;
 //     padding-right: 20;
 //   }
